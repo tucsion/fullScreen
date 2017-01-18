@@ -1,56 +1,78 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>fullScreen</title>
-	<link rel="stylesheet" href="css/reset.css">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-	<section class="wrap">
-		
-		<input type="radio" name="radionav" class="p-btn p-radio p-radio-1" checked="checked">
-		<a href="#p-bd-1" class="p-btn p-btn-a">栏目 1</a>
+	<div id="banner">
+		<!-- <div class="slidBar"><span></span></div> -->
+		<div class="bbody">
+			<ul>
+				<li style="background-image: url(images/header01.jpg);"></li>
+				<li style="background-image: url(images/header02.jpg);"></li>
+				<li style="background-image: url(images/header01.jpg);"></li>
+			</ul>
+			<ol id="controller">
+				<li class="active"><span></span></li>
+				<li><span></span></li>
+				<li><span></span></li>
+			</ol>
+		</div>
+	</div>
 
-		<input type="radio" name="radionav" class="p-btn p-radio p-radio-2">
-		<a href="#p-bd-2" class="p-btn p-btn-a">栏目 2</a>
 
-		<input type="radio" name="radionav" class="p-btn p-radio p-radio-3">
-		<a href="#p-bd-3" class="p-btn p-btn-a">栏目 3</a>
-		
-		<input type="radio" name="radionav" class="p-btn p-radio p-radio-4">
-		<a href="#p-bd-4" class="p-btn p-btn-a">栏目 4</a>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//设置banner宽高尺寸
+			var sW = $(window).width();
+			var setBanner = function(){
+				var sNW = $(window).width(),//屏幕宽度
+					sH = sHH = $(window).height(),//屏幕高度
+					cW = $('#controller').width(),//控制按钮宽度
+					bNum = $('.bbody > ul > li').length;//banner图片数量
+				$('#banner').css({height: sH});
+				$('#controller').css('margin-left', -cW / 2);
+				$('.bbody > ul').css('width', sNW*bNum);
+				$('.bbody > ul > li').css('width', sNW);
+			}
+			$(window).resize(function() {
+				setBanner();
+			});
+			setBanner();
 
-		<input type="radio" name="radionav" class="p-btn p-radio p-radio-5">
-		<a href="#p-bd-5" class="p-btn p-btn-a">栏目 5</a>
+			//设置banner轮播
+			var btns = $('#controller li');
 
-		<span id="triangle"></span>
-		
-		<section id="content">
-			<div class="box" id="p-bd-1" name=""p-bd-1"">
-				<h4>第一个标题 第一个标题第一个标题</h4>
-				<p>第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落第一个段落</p>
-			</div>
-			<div class="box" id="p-bd-2" name=""p-bd-2"">
-				<h4>第二个标题 第二个标题第二个标题</h4>
-				<p>第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落第二个段落</p>
-			</div>
-			<div class="box" id="p-bd-3" name=""p-bd-3"">
-				<h4>第三个标题 第三个标题第三个标题</h4>
-				<p>第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落第三个段落</p>
-			</div>
-			<div class="box" id="p-bd-4" name=""p-bd-4"">
-				<h4>第四个标题 第四个标题第四个标题</h4>
-				<p>第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落第四个段落</p>
-			</div>
-			<div class="box" id="p-bd-5" name=""p-bd-5"">
-				<h4>第五个标题 第五个标题第五个标题</h4>
-				<p>第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落第五个段落</p>
-			</div>
-		</section>
+			var index = 0;
+			var timer = null;
+			function autoplay(){
+				timer = setInterval(function(){
+					index++;
+					if(index < btns.length){
+						$('#controller li').eq(index).addClass("active").siblings().removeClass("active");
+						$('#banner > .bbody > ul').css('left', -index*sW);
+					}else{
+						index = 0;
+						$('#controller li').eq(0).addClass("active").siblings().removeClass("active");
+						$('#banner > .bbody > ul').css('left', -index*sW);
+					}
+				},5000);
+			}
+			autoplay();
 
-	</section>
 
+			$("#controller li").mouseover(function(){
+				 clearInterval(timer);
+			}).mouseout(function(){
+				autoplay();
+			});
+
+		});
+	</script>
 </body>
 </html>

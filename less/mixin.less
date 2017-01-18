@@ -1,0 +1,181 @@
+
+.border-radius (@radius: 5px) {
+	border-radius: @radius;
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+}
+
+.border-radius-custom (@topleft: 5px, @topright: 5px, @bottomleft: 5px, @bottomright: 5px) {
+	-webkit-border-radius: @topleft @topright @bottomright @bottomleft;
+	-moz-border-radius: @topleft @topright @bottomright @bottomleft;
+	border-radius: @topleft @topright @bottomright @bottomleft;
+}
+
+//
+//[ transition-property ]：检索或设置对象中的参与过渡的属性
+//[ transition-duration ]：检索或设置对象过渡的持续时间
+//[ transition-timing-function ]：检索或设置对象中过渡的动画类型
+//[ transition-delay ]：检索或设置对象延迟过渡的时间
+//
+.transition(@code){
+	-webkit-transition: @code;
+	-moz-transition: @code;
+	-o-transition: @code;
+	transition: @code;
+}
+
+//
+//2D变换原点
+//<percentage>：用百分比指定坐标值。可以为负值。
+//<length>：用长度值指定坐标值。可以为负值。
+//left：指定原点的横坐标为left
+//center①：指定原点的横坐标为center
+//right：指定原点的横坐标为right
+//top：指定原点的纵坐标为top
+//center②：指定原点的纵坐标为center
+//bottom：指定原点的纵坐标为bottom
+//
+.transform-origin(@x:center,@y:center){
+	-webkit-transform-origin : @x @y;
+	-moz-transform-origin : @x @y;
+	-o-transform-origin : @x @y;
+	-ms-transform-origin : @x @y;
+	transform-origin : @x @y;
+}
+
+.perspective(@p:500){
+	perspective: @p;
+	-webkit-perspective: @p; /* Safari 和 Chrome */
+}
+
+//
+//none：无转换
+//matrix(<number>,<number>,<number>,<number>,<number>,<number>)：以一个含六值的(a,b,c,d,e,f)变换矩阵的形式指定一个2D变换，相当于直接应用一个[a,b,c,d,e,f]变换矩阵
+//translate(<length>[, <length>])：指定对象的2D translation（2D平移）。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则默认值为0
+//translateX(<length>)：指定对象X轴（水平方向）的平移
+//translateY(<length>)：指定对象Y轴（垂直方向）的平移
+//rotate(<angle>)：指定对象的2D rotation（2D旋转），需先有transform-origin属性的定义
+//scale(<number>[, <number>])：指定对象的2D scale（2D缩放）。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则默认取第一个参数的值
+//scaleX(<number>)：指定对象X轴的（水平方向）缩放
+//scaleY(<number>)：指定对象Y轴的（垂直方向）缩放
+//skew(<angle> [, <angle>])：指定对象skew transformation（斜切扭曲）。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则默认值为0
+//skewX(<angle>)：指定对象X轴的（水平方向）扭曲
+//skewY(<angle>)：指定对象Y轴的（垂直方向）扭曲
+//
+.transform(@code){
+	-webkit-transform   : @code;
+	-moz-transform      : @code;
+	-ms-transform       : @code;
+	-o-transform 		: @code;
+	transform           : @code;
+}
+
+//
+//[ animation-name ]：检索或设置对象所应用的动画名称
+//[ animation-duration ]：检索或设置对象动画的持续时间
+//[ animation-timing-function ]：检索或设置对象动画的过渡类型
+//[ animation-delay ]：检索或设置对象动画延迟的时间
+//[ animation-iteration-count ]：检索或设置对象动画的循环次数 infinite ：无限循环
+//[ animation-direction ]：检索或设置对象动画在循环中是否反向运动 normal,alternate ：正常与反向交替
+//[ animation-play-state ]：检索或设置对象动画的状态。w3c正考虑是否将该属性移除，因为动画的状态可以通过其它的方式实现，比如重设样式
+//	opara 不支持
+//
+.animation(@code){
+	-webkit-animation   : @code;
+	-moz-animation      : @code;
+	-ms-animation       : @code;
+	animation           : @code;
+}
+
+
+//
+//文本超出显示省略号
+//
+.text-autocut(){
+	overflow: hidden;
+	white-space: nowrap;
+	-webkit-text-overflow:ellipsis;
+	-khtml-text-overflow: ellipsis; 
+	-icab-text-overflow: ellipsis; 
+	-moz-text-overflow: ellipsis; 
+	-o-text-overflow: ellipsis; 
+	text-overflow: ellipsis; 
+}
+
+//
+//文字换行 @info 单词强制截断换行
+//
+.wrap () {
+	text-wrap: wrap;
+	word-wrap: break-word;
+}
+
+.box-sizing(@sizing:border-box){
+	-webkit-box-sizing: @sizing;
+	-moz-box-sizing: @sizing;
+	box-sizing: @sizing;
+}
+
+//
+//padding-box：从padding区域（不含padding）开始向外裁剪背景。
+//border-box：从border区域（不含border）开始向外裁剪背景。
+//content-box：从content区域开始向外裁剪背景。
+//text：从前景内容的形状（比如文字）作为裁剪区域向外裁剪，如此即可实现使用背景作为填充色之类的遮罩效果。遮罩效果 See with Webkit
+//
+.background-clip(@clip:content-box){
+	background-clip: @clip;
+	-webkit-background-clip : @clip;
+}
+
+
+.columns(@width,@num){
+	-moz-columns:@width @num;
+	-webkit-columns:@width @num;
+	columns:@width @num;
+}
+
+
+//
+//外投影 @info 4个参数分别表示：x轴偏移、y轴偏移、模糊长度、透明度（默认颜色是黑色）
+//
+.box-shadow(@x: 0px, @y: 0px, @blur: 8px, @alpha: 0.5) {
+	-webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+	-moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+	box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+
+//
+//内投影 @info 4个参数分别表示：x轴偏移、y轴偏移、模糊长度、透明度（默认颜色是黑色）
+//
+.inner-shadow(@param1:0px,@param2:0px,@param3:8px,@opacity:0.5){
+	box-shadow:inset @param1 @param2 @param3 rgba(0, 0, 0, @opacity);
+	-moz-box-shadow:inset @param1 @param2 @param3 rgba(0, 0, 0, @opacity);
+	-webkit-box-shadow:inset @param1 @param2 @param3 rgba(0, 0, 0, @opacity);
+}
+
+//
+//left：设置左边为渐变起点的横坐标值。
+//right：设置右边为渐变起点的横坐标值。
+//top：设置顶部为渐变起点的纵坐标值。
+//bottom：设置底部为渐变起点的纵坐标值。
+//<angle>：用角度值指定渐变的方向（或角度）。
+//<color-stop>：指定渐变的起止颜色。<color-stop>
+//<color>：指定颜色。请参阅颜色值
+//<length>：用长度值指定起止色位置。不允许负值
+//<percentage>：用百分比指定起止色位置。
+//
+.linear-gradient(@origin: top, @startColor:#fff, @endColor:#000){
+	background-image: -webkit-linear-gradient(@origin, @startColor, @endColor);
+	background-image:-moz-linear-gradient(@origin, @startColor, @endColor);
+	background-image: -o-linear-gradient(@origin, @startColor, @endColor);
+	background-image: -ms-linear-gradient(@origin, @startColor, @endColor);
+	background-image: linear-gradient(@origin, @startColor, @endColor);
+}
+
+
+.opacity(@opacity:0.5){
+    @opa: (@opacity*100);
+    filter: alpha(opacity=@opa);
+    opacity: @opacity;
+}
+
